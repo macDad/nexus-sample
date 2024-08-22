@@ -1,0 +1,31 @@
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Event {
+  id                 String             @id @default(auto()) @map("_id") @db.ObjectId
+  key                String             @unique
+  userId             String
+  event_name         String
+  description        String?
+  from_date_time     DateTime
+  to_date_time       DateTime?
+  subscription_count Int?
+  fields             String[]
+  additional_fields  additionalFields[]
+  banner             String
+  thumbnail          String
+  createdAt          DateTime           @default(now())
+  updatedAt          DateTime           @updatedAt
+}
+
+type additionalFields {
+  value   String
+  type    String
+  options String[]
+}

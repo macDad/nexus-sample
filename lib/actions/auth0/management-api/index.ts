@@ -1,0 +1,1 @@
+export { setUserMetaData } from "./manage-user-meta-data";
